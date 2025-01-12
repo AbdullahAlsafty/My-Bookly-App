@@ -13,6 +13,13 @@ class SplashViewBody extends StatelessWidget {
         Image.asset(
           AssetData.logo,
         ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          'Read free boxs ',
+          textAlign: TextAlign.center,
+        )
       ],
     );
   }

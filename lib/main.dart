@@ -12,7 +12,7 @@ class MyBooklyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: kprimaryColor),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: kprimaryColor),
       home: SplashView(),
     );
   }
