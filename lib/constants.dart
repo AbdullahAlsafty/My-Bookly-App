@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 abstract class StylsFil {
+  static TextStyle textfont14 = TextStyle(
+    fontSize: 14,
+  );
+
+  static TextStyle textfont16 = TextStyle(
+    fontSize: 16,
+  );
   static TextStyle textfont18 = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w100,
+  );
+
+  static TextStyle textfont20 = TextStyle(
+    fontSize: 20,
   );
 }
 
