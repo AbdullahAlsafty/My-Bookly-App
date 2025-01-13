@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_bookly/constants.dart';
 
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/Featured_book_listview.dart';
+import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/best_saler_listview_items.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -19,7 +20,8 @@ class HomeViewBody extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          Text('Best Saler', style: StylsFil.titleLarge),
+          Text('Best Saler', style: StylsFil.textfont18),
+          BestSalerListviewItems()
         ],
       ),
     );

@@ -39,12 +39,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigatTomHome() {
-    Future.delayed(Duration(seconds: 1), () {
-      Get.to(
-        HomView(),
-        transition: kTransition,
-        duration: kDuration,
-      );
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return HomView();
+      }));
     });
   }
 }
