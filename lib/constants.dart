@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const Color kprimaryColor = Color(0XFF100B20);
 const Transition kTransition = Transition.cupertinoDialog;
