@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_bookly/constants.dart';
 import 'package:my_bookly/core/utils/asset_data.dart';
+import 'package:my_bookly/features/hom_featuer/presentation_layer/views/hom_view.dart';
 
-class SplashViewBody extends StatelessWidget {
+class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
+
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  void initState() {
+    navigatTomHome();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,5 +36,15 @@ class SplashViewBody extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void navigatTomHome() {
+    Future.delayed(Duration(seconds: 2), () {
+      Get.to(
+        HomView(),
+        transition: kTransition,
+        duration: kDuration,
+      );
+    });
   }
 }
