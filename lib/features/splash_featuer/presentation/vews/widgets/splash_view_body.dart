@@ -39,7 +39,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigatTomHome() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       Get.to(
         HomView(),
         transition: kTransition,
