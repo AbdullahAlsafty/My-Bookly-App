@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/asset_data.dart';
-import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/custom_listview_item.dart';
+import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/Featured_book_listview.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -8,7 +8,10 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [CustomAppBar(), SizedBox(height: 55), CustomListviewItem()],
+      children: [
+        CustomAppBar(),
+        FeaturedBookListview(),
+      ],
     );
   }
 }
@@ -19,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 20),
       child: Row(
         children: [
           Image.asset(
