@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_bookly/constants.dart';
-import 'package:my_bookly/core/utils/asset_data.dart';
+
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/hom_view.dart';
 
 class SplashViewBody extends StatefulWidget {

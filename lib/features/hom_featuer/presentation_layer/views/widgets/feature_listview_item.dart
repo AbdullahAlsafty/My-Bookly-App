@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/asset_data.dart';
+import 'package:my_bookly/constants.dart';
 
 class FeatureListviewItem extends StatelessWidget {
   const FeatureListviewItem({super.key});
