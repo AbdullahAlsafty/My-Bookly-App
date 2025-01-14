@@ -15,6 +15,10 @@ abstract class StylsFil {
   static TextStyle textfont20 = TextStyle(
     fontSize: 20,
   );
+
+  static TextStyle textfont30 = TextStyle(
+    fontSize: 30,
+  );
 }
 
 abstract class AssetData {

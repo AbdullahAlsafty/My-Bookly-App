@@ -57,7 +57,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     //   return HomView();
     // }));
     if (mounted) {
-      _timer = Timer(Duration(seconds: 4), () {
+      _timer = Timer(Duration(seconds: 1), () {
         GoRouter.of(context).go(AppRouts.kHomeView);
       });
     }
