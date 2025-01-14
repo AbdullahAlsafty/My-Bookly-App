@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:my_bookly/constants.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_bookly/constants.dart';
+import 'package:my_bookly/core/utils/constants/app_routs.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/hom_view.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -12,14 +14,26 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
+  Timer? _timer;
   @override
   void initState() {
+    print('1111111');
     navigatTomHome();
     super.initState();
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    print('***************');
+    _timer?.cancel();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('2222');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,10 +53,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigatTomHome() {
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return HomView();
-      }));
-    });
+    // Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //   return HomView();
+    // }));
+    if (mounted) {
+      _timer = Timer(Duration(seconds: 4), () {
+        GoRouter.of(context).go(AppRouts.kHomeView);
+      });
+    }
   }
 }
