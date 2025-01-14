@@ -4,29 +4,39 @@ import 'package:my_bookly/constants.dart';
 
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/Featured_book_listview.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/best_saler_listview_items.dart';
+import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/best_saller_listview.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomAppBar(),
-          FeaturedBookListview(),
-          SizedBox(
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: CustomAppBar(),
+          ),
+        ),
+        SliverToBoxAdapter(child: FeaturedBookListview()),
+        SliverToBoxAdapter(
+          child: const SizedBox(
             height: 50,
           ),
-          Text('Best Saler', style: StylsFil.textfont18),
-          SizedBox(
+        ),
+        SliverToBoxAdapter(
+            child: Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Text('Best Saler', style: StylsFil.textfont18),
+        )),
+        SliverToBoxAdapter(
+          child: const SizedBox(
             height: 20,
           ),
-          BestSalerListviewItems()
-        ],
-      ),
+        ),
+        SliverFillRemaining(child: BestSalerListView())
+      ],
     );
   }
 }

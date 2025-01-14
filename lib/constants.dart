@@ -24,5 +24,6 @@ abstract class AssetData {
 
 const Color kprimaryColor = Color(0XFF100B20);
 const String kpaciffico = 'Pacifico';
-const String kgTSectraFine = 'GT Sectra Fine';
+const String kgTSectraFine = 'GT Sectra Fine Regular';
+
 const String kMontserratSemiBold = 'Montserrat-SemiBold';
