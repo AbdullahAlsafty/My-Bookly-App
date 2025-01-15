@@ -12,7 +12,7 @@ class BestSalerListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(left: 30),
-            child: BestSalerListviewItems(),
+            child: BooksListViewItems(),
           );
         });
   }

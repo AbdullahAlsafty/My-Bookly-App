@@ -4,7 +4,7 @@ import 'package:my_bookly/constants.dart';
 
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/Featured_book_listview.dart';
 
-import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/best_saller_listview.dart';
+import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/books_listview.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/custom_app_bar_homview.dart';
 
 class HomeViewBody extends StatelessWidget {
