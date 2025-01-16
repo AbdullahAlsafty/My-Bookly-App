@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 import 'package:my_bookly/core/utils/api_serveses.dart';
 
@@ -10,20 +11,39 @@ class HomRepoImpementation implements HomeRepo {
   @override
   Future<Either<Faillurs, List<BookModel>>> feacnewstBooks() async {
     try {
-      var data = await ApiServeses().getBooksModel(
-          endPoint: 'volumes?Filtering=free-ebooks&q=supject:programming');
+      Map<String, dynamic> data = await ApiServeses().getBooksModel(
+          endPoint:
+              'volumes?Filtering=free-ebooks&sorting=newest&q=supject:programming');
       List<BookModel> allBooks = [];
-      for (var element in data['items']) {
+      for (Map<String, dynamic> element in data['items']) {
         allBooks.add(BookModel.fromJsonVz(element));
       }
       return right(allBooks);
     } catch (e) {
-      return left(ServerFaillur());
+      if (e is DioError) {
+        return left(ServerFaillur.fromDioError(e));
+      }
+      return left(ServerFaillur(
+          errorMessage:
+              'Exception Error caused by something other than the Dio ..........\n ${e.toString()}'));
     }
   }
 
   @override
   Future<Either<Faillurs, List<BookModel>>> feachFeatureBooks() async {
-    return left(ServerFaillur());
+    try {
+      Map<String, dynamic> data = await ApiServeses().getBooksModel(
+          endPoint: 'volumes?Filtering=free-ebooks&q=supject:programming');
+      List<BookModel> allBooks = [];
+      for (Map<String, dynamic> element in data['items']) {
+        allBooks.add(BookModel.fromJsonVz(element));
+      }
+      return right(allBooks);
+    } catch (e) {
+      if (e is DioError) {}
+      return left(ServerFaillur(
+          errorMessage:
+              'Exception Error caused by something other than the Dio ..........\n ${e.toString()}'));
+    }
   }
 }

@@ -4,6 +4,8 @@ import 'package:my_bookly/constants.dart';
 import 'package:my_bookly/core/utils/constants/app_routs.dart';
 
 void main() {
+  print('inside maing function ');
+
   runApp(MyBooklyApp());
 }
 

@@ -16,7 +16,6 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   Timer? _timer;
   @override
   void initState() {
-    print('1111111');
     navigatTomHome();
     super.initState();
   }
@@ -24,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void dispose() {
     // TODO: implement dispose
-    print('***************');
+
     _timer?.cancel();
 
     super.dispose();
@@ -32,7 +31,6 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    print('2222');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
