@@ -1,19 +1,27 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_bookly/constants.dart';
+
 import 'package:my_bookly/core/utils/constants/app_routs.dart';
+import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book_model.dart';
+
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/book_rating.dart';
 
-class BooksListViewItems extends StatelessWidget {
-  const BooksListViewItems({super.key});
+class BooksListViewItem extends StatelessWidget {
+  final BookModel bookModel;
+  const BooksListViewItem({
+    super.key,
+    required this.bookModel,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
-        onTap: () {
-          GoRouter.of(context).go(AppRouts.kBooksDetailsView);
+        onTap: () async {
+          GoRouter.of(context).go(AppRouts.kBooksDetailsView, extra: bookModel);
         },
         child: Row(
           children: [
@@ -21,15 +29,19 @@ class BooksListViewItems extends StatelessWidget {
               height: 125,
               child: AspectRatio(
                 aspectRatio: 26 / 40,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.red,
+                child: CachedNetworkImage(
+                  imageUrl:
+                      (bookModel.volumeInfo!.imageLinks?.smallThumbnail) ?? '',
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(
-                            AssetData.testImage,
-                          ),
-                          fit: BoxFit.fill)),
+                        image: imageProvider,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
             ),
@@ -45,14 +57,14 @@ class BooksListViewItems extends StatelessWidget {
                     child: Text(
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      'Harry Potter and the Goblet of Fire ',
+                      (bookModel.volumeInfo!.title)!,
                       style: StylsFil.textfont20
                           .copyWith(fontFamily: kgTSectraFine),
                     ),
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    'J.K. Rowling',
+                    bookModel.volumeInfo!.authors?[0] ?? '0',
                     style: StylsFil.textfont14,
                   ),
                   const SizedBox(
@@ -61,12 +73,14 @@ class BooksListViewItems extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '19.99 €',
+                        'Free',
                         style: StylsFil.textfont20
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       Spacer(),
-                      BooksRating(),
+                      BooksRating(
+                        bookModel: bookModel,
+                      ),
                     ],
                   )
                 ],

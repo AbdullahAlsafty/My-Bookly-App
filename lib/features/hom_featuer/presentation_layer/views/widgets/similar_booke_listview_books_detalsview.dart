@@ -14,7 +14,9 @@ class SimilarBookeListviewBooksDetalsview extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: 10,
             itemBuilder: (context, index) {
-              return BookImage();
+              return BookImage(
+                imageUrl: '',
+              );
             }),
       ),
     );

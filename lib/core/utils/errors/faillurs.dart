@@ -8,6 +8,7 @@ abstract class Faillurs {
 
 class ServerFaillur extends Faillurs {
   ServerFaillur({required super.errorMessage});
+  int nn = 9;
 
   factory ServerFaillur.fromDioError(DioError dioError) {
     switch (dioError.type) {

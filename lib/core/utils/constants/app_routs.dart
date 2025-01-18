@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book_model.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/books_details_view.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/hom_view.dart';
 import 'package:my_bookly/features/search_featuer/presentation/views/search_view.dart';
@@ -15,6 +16,7 @@ abstract class AppRouts {
       GoRoute(
           path: kSplashView,
           builder: (context, state) {
+            final BookModel bookModel = state.extra as BookModel;
             return SplashView();
           }),
       GoRoute(

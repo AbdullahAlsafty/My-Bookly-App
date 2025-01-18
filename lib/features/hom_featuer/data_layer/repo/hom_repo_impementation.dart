@@ -12,8 +12,8 @@ class HomRepoImpementation implements HomeRepo {
   Future<Either<Faillurs, List<BookModel>>> feacnewstBooks() async {
     try {
       Map<String, dynamic> data = await ApiServeses().getBooksModel(
-          endPoint:
-              'volumes?Filtering=free-ebooks&sorting=newest&q=supject:programming');
+          url:
+              'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&sorting=newest&q=supject:programming');
       List<BookModel> allBooks = [];
       for (Map<String, dynamic> element in data['items']) {
         allBooks.add(BookModel.fromJsonVz(element));
@@ -33,7 +33,8 @@ class HomRepoImpementation implements HomeRepo {
   Future<Either<Faillurs, List<BookModel>>> feachFeatureBooks() async {
     try {
       Map<String, dynamic> data = await ApiServeses().getBooksModel(
-          endPoint: 'volumes?Filtering=free-ebooks&q=supject:programming');
+          url:
+              'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=supject:programming');
       List<BookModel> allBooks = [];
       for (Map<String, dynamic> element in data['items']) {
         allBooks.add(BookModel.fromJsonVz(element));
