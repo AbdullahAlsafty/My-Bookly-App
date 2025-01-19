@@ -3,7 +3,7 @@ import 'package:my_bookly/constants.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/Featured_book_listview.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/custom_app_bar_homview.dart';
 
-import 'best_saller_books_listview.dart';
+import 'newest_books_listview.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -32,7 +32,7 @@ class HomeViewBody extends StatelessWidget {
             ],
           ),
         ),
-        SliverToBoxAdapter(child: BestSallerBooksListView()),
+        SliverToBoxAdapter(child: NewestBooksListViw()),
       ],
     );
   }

@@ -12,7 +12,7 @@ import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/fea
 import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/newest_cubit/newest_books_cubit.dart';
 
 void main() {
-  setupLocatedServicesPacge();
+  // setupLocatedServicesPacge();
 
   runApp(MyBooklyApp());
 }
@@ -25,14 +25,14 @@ class MyBooklyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              FeatureBooksCubit(homeRepo: getIt.get<HomRepoImpementation>()),
+          create: (context) => FeatureBooksCubit(
+              homeRepo:
+                  HomRepoImpementation(apiServeses: ApiServeses(dio: Dio()))),
         ),
         BlocProvider(
-          create: (context) =>
-              NewestBooksCubit(homeRepo: getIt.get<HomRepoImpementation>())
-                ..feachNewestBook(),
-        ),
+            create: (context) => NewestBooksCubit(
+                homeRepo: HomRepoImpementation(
+                    apiServeses: ApiServeses(dio: Dio())))),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouts.route,

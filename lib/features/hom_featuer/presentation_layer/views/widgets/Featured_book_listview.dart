@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_bookly/core/utils/constants/app_routs.dart';
 import 'package:my_bookly/core/utils/widgets/custom_error_widget.dart';
 import 'package:my_bookly/features/hom_featuer/data_layer/repo/hom_repo_impementation.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/feature_cubit/feature_books_cubit.dart';
@@ -17,6 +20,7 @@ class _FeaturedBookListviewState extends State<FeaturedBookListview> {
   @override
   void initState() {
     BlocProvider.of<FeatureBooksCubit>(context).feachFeatureBooks();
+
     super.initState();
   }
 
@@ -24,7 +28,8 @@ class _FeaturedBookListviewState extends State<FeaturedBookListview> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: BlocBuilder<FeatureBooksCubit, FeatureBooksState>(
+      child: BlocConsumer<FeatureBooksCubit, FeatureBooksState>(
+        listener: (context, state) {},
         builder: (context, state) {
           if (state is FeatureBooksSuccessState) {
             return SizedBox(
@@ -34,17 +39,28 @@ class _FeaturedBookListviewState extends State<FeaturedBookListview> {
                   scrollDirection: Axis.horizontal,
                   itemCount: state.books.length,
                   itemBuilder: (context, index) {
-                    return BookImage(
-                      imageUrl: (state.books[index].volumeInfo?.imageLinks
-                              ?.smallThumbnail) ??
-                          'https://fastly.picsum.photos/id/322/200/200.jpg?hmac=h5_-NQtnn86YBEwVT2_4zcSeuxpCnMAdriBcZchtfas',
+                    return GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).go(AppRouts.kBooksDetailsView,
+                            extra: state.books[index]);
+                      },
+                      child: BookImage(
+                        imageUrl: state.books[index].volumeInfo!.imageLinks
+                                ?.smallThumbnail ??
+                            'https://fastly.picsum.photos/id/322/200/200.jpg?hmac=h5_-NQtnn86YBEwVT2_4zcSeuxpCnMAdriBcZchtfas',
+                      ),
                     );
                   }),
             );
           } else if (state is FeatureBooksFaillureState) {
             return CustomErrorWidget(errorMessage: state.errorMessage);
-          } else {
+          } else if (state is FeatureBooksLoadedState) {
             return Center(child: CircularProgressIndicator());
+          } else {
+            return Container(
+              color: Colors.green,
+              child: Text('initial state .........'),
+            );
           }
         },
       ),

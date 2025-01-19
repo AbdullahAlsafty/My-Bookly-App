@@ -4,11 +4,25 @@ import 'package:my_bookly/core/utils/widgets/custom_error_widget.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/newest_cubit/newest_books_cubit.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/books_listview_item.dart';
 
-class BestSallerBooksListView extends StatelessWidget {
-  const BestSallerBooksListView({super.key});
+class NewestBooksListViw extends StatefulWidget {
+  const NewestBooksListViw({super.key});
+
+  @override
+  State<NewestBooksListViw> createState() => _NewestBooksListViwState();
+}
+
+class _NewestBooksListViwState extends State<NewestBooksListViw> {
+  @override
+  void initState() {
+    BlocProvider.of<NewestBooksCubit>(context).feachNewestBook();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewestBooksCubit, NewestBooksState>(
+    return BlocConsumer<NewestBooksCubit, NewestBooksState>(
+      listener: (context, state) {},
       builder: (context, state) {
         if (state is NewestBooksSuccessState) {
           return ListView.builder(
@@ -25,8 +39,13 @@ class BestSallerBooksListView extends StatelessWidget {
               });
         } else if (state is NewestBooksFaillurState) {
           return CustomErrorWidget(errorMessage: state.errorMessage);
-        } else {
+        } else if (state is NewestBooksLoadedState) {
           return Center(child: CircularProgressIndicator());
+        } else {
+          return Container(
+            color: Colors.red,
+            child: Text('        initial ..........>>>.'),
+          );
         }
       },
     );

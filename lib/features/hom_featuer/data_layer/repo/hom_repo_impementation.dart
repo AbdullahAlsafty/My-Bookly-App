@@ -15,13 +15,20 @@ class HomRepoImpementation implements HomeRepo {
     try {
       Map<String, dynamic> data = await apiServeses.getBooksModel(
           url:
-              'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&sorting=newest&q=supject:programming');
+              'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&sorting=newest&q=supject:computer science');
       List<BookModel> allBooks = [];
       for (Map<String, dynamic> element in data['items']) {
-        allBooks.add(BookModel.fromJsonVz(element));
+        try {
+          allBooks.add(BookModel.fromJsonVz(element));
+        } catch (e) {
+          print(
+              '========= inside for try feach newest in Repo \n =====%%%%%   ${element['volumeInfo']['title']} %%%%%%%%%%%%%   ${element}');
+          // TODO
+        }
       }
       return right(allBooks);
     } catch (e) {
+      print('========== main cach  newest  book');
       if (e is DioError) {
         return left(ServerFaillur.fromDioError(e));
       }
@@ -39,14 +46,23 @@ class HomRepoImpementation implements HomeRepo {
               'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=supject:programming');
       List<BookModel> allBooks = [];
       for (Map<String, dynamic> element in data['items']) {
-        allBooks.add(BookModel.fromJsonVz(element));
+        try {
+          allBooks.add(BookModel.fromJsonVz(element));
+        } catch (e) {
+          print(
+              '============== for featur  catch ${element['volumeInfo']['title']} ');
+        }
       }
       return right(allBooks);
     } catch (e) {
-      if (e is DioError) {}
-      return left(ServerFaillur(
-          errorMessage:
-              'Exception Error caused by something other than the Dio ..........\n ${e.toString()}'));
+      print('========== RRRRRRRR  feature book');
+      if (e is DioError) {
+        return left(ServerFaillur(errorMessage: e.toString()));
+      } else {
+        return left(ServerFaillur(
+            errorMessage:
+                'Exception Error caused by something other than the Dio ..........\n ${e.toString()}'));
+      }
     }
   }
 }

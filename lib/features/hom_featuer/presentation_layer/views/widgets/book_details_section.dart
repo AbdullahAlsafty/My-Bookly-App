@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_bookly/constants.dart';
 import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book_model.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/book_image.dart';
@@ -6,7 +7,8 @@ import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/box_action_book_detailsview.dart';
 
 class BooksDetailSection extends StatelessWidget {
-  const BooksDetailSection({super.key});
+  const BooksDetailSection({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +18,14 @@ class BooksDetailSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * .17),
           child: BookImage(
-            imageUrl: '',
+            imageUrl: bookModel.volumeInfo!.imageLinks?.smallThumbnail ?? '',
           ),
         ),
         SizedBox(
           height: 43,
         ),
         Text(
-          'The Jungle Book',
+          bookModel.volumeInfo!.title!,
           style: StylsFil.textfont30
               .copyWith(fontWeight: FontWeight.bold, fontFamily: kgTSectraFine),
         ),
@@ -33,7 +35,7 @@ class BooksDetailSection extends StatelessWidget {
         Opacity(
           opacity: 0.7,
           child: Text(
-            'Rudyard Kipling',
+            bookModel.volumeInfo!.authors![0],
             style: StylsFil.textfont18.copyWith(
               fontWeight: FontWeight.w500,
             ),
@@ -42,10 +44,10 @@ class BooksDetailSection extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        // BooksRating(
-        //   bookModel: ,
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        // ),
+        BooksRating(
+          bookModel: bookModel,
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
         SizedBox(
           height: 37,
         ),
