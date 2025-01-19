@@ -18,17 +18,10 @@ class HomRepoImpementation implements HomeRepo {
               'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&sorting=newest&q=supject:computer science');
       List<BookModel> allBooks = [];
       for (Map<String, dynamic> element in data['items']) {
-        try {
-          allBooks.add(BookModel.fromJsonVz(element));
-        } catch (e) {
-          print(
-              '========= inside for try feach newest in Repo \n =====%%%%%   ${element['volumeInfo']['title']} %%%%%%%%%%%%%   ${element}');
-          // TODO
-        }
+        allBooks.add(BookModel.fromJsonVz(element));
       }
       return right(allBooks);
     } catch (e) {
-      print('========== main cach  newest  book');
       if (e is DioError) {
         return left(ServerFaillur.fromDioError(e));
       }
@@ -46,22 +39,36 @@ class HomRepoImpementation implements HomeRepo {
               'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=supject:programming');
       List<BookModel> allBooks = [];
       for (Map<String, dynamic> element in data['items']) {
-        try {
-          allBooks.add(BookModel.fromJsonVz(element));
-        } catch (e) {
-          print(
-              '============== for featur  catch ${element['volumeInfo']['title']} ');
-        }
+        allBooks.add(BookModel.fromJsonVz(element));
       }
       return right(allBooks);
     } catch (e) {
-      print('========== RRRRRRRR  feature book');
       if (e is DioError) {
         return left(ServerFaillur(errorMessage: e.toString()));
       } else {
         return left(ServerFaillur(
             errorMessage:
                 'Exception Error caused by something other than the Dio ..........\n ${e.toString()}'));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Faillurs, List<BookModel>>> feachSimilarBooks() async {
+    try {
+      Map<String, dynamic> data = await apiServeses.getBooksModel(
+          url:
+              'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&sorting=relvance&q=supject:computer science');
+      List<BookModel> allBooks = [];
+      for (Map<String, dynamic> element in data['items']) {
+        allBooks.add(BookModel.fromJsonVz(element));
+      }
+      return right(allBooks);
+    } catch (e) {
+      if (e is DioError) {
+        return left(ServerFaillur(errorMessage: e.toString()));
+      } else {
+        return left(ServerFaillur(errorMessage: e.toString()));
       }
     }
   }

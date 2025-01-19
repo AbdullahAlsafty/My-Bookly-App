@@ -13,7 +13,6 @@ class BooksRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var vv = (bookModel.volumeInfo?.averageRating);
     return Row(
       mainAxisAlignment: mainAxisAlignment,
       children: [

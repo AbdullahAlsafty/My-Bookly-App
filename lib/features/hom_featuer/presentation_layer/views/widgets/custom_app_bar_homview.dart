@@ -1,10 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_bookly/constants.dart';
 import 'package:my_bookly/core/utils/constants/app_routs.dart';
-import 'package:my_bookly/core/utils/errors/faillurs.dart';
-import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book_model.dart';
 
 class CustomAppBarHomView extends StatelessWidget {
   const CustomAppBarHomView({super.key});

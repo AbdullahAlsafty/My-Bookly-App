@@ -6,4 +6,5 @@ import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book
 abstract class HomeRepo {
   Future<Either<Faillurs, List<BookModel>>> feacnewstBooks();
   Future<Either<Faillurs, List<BookModel>>> feachFeatureBooks();
+  Future<Either<Faillurs, List<BookModel>>> feachSimilarBooks();
 }

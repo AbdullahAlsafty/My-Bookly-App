@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book_model.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/books_details_view.dart';
@@ -16,7 +17,6 @@ abstract class AppRouts {
       GoRoute(
           path: kSplashView,
           builder: (context, state) {
-            // final BookModel bookModel = state.extra as BookModel;
             return SplashView();
           }),
       GoRoute(
@@ -27,9 +27,27 @@ abstract class AppRouts {
       GoRoute(
           path: kBooksDetailsView,
           builder: (context, state) {
-            return BooksDetailsView(
-              bookModel: state.extra as BookModel,
-            );
+            try {
+              return BooksDetailsView(
+                bookModel: state.extra as BookModel,
+              );
+            } catch (e) {
+              print('kkkkkkkk');
+              return Scaffold(
+                body: Container(
+                  color: Colors.green,
+                  child: GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).pop();
+                      },
+                      child: Container(
+                          height: 300,
+                          color: Colors.red,
+                          child: Text('ddfgfdgdfgfdgdfata'))),
+                ),
+              );
+              // TODO
+            }
           }),
       GoRoute(
           path: kSearchView,

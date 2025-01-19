@@ -7,12 +7,12 @@ import 'package:my_bookly/core/utils/api_serveses.dart';
 import 'package:my_bookly/core/utils/constants/app_routs.dart';
 import 'package:my_bookly/core/utils/located_services.dart';
 import 'package:my_bookly/features/hom_featuer/data_layer/repo/hom_repo_impementation.dart';
-import 'package:my_bookly/features/hom_featuer/data_layer/repo/home_repo.dart';
+
 import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/feature_cubit/feature_books_cubit.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/newest_cubit/newest_books_cubit.dart';
 
 void main() {
-  // setupLocatedServicesPacge();
+  setupLocatedServicesPacge();
 
   runApp(MyBooklyApp());
 }

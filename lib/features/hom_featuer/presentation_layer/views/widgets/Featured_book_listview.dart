@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_bookly/core/utils/constants/app_routs.dart';
 import 'package:my_bookly/core/utils/widgets/custom_error_widget.dart';
-import 'package:my_bookly/features/hom_featuer/data_layer/repo/hom_repo_impementation.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/view_model/feature_cubit/feature_books_cubit.dart';
 import 'package:my_bookly/features/hom_featuer/presentation_layer/views/widgets/book_image.dart';
 
@@ -41,7 +38,7 @@ class _FeaturedBookListviewState extends State<FeaturedBookListview> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).go(AppRouts.kBooksDetailsView,
+                        GoRouter.of(context).push(AppRouts.kBooksDetailsView,
                             extra: state.books[index]);
                       },
                       child: BookImage(
