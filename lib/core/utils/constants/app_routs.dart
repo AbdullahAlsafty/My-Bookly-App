@@ -16,7 +16,7 @@ abstract class AppRouts {
       GoRoute(
           path: kSplashView,
           builder: (context, state) {
-            final BookModel bookModel = state.extra as BookModel;
+            // final BookModel bookModel = state.extra as BookModel;
             return SplashView();
           }),
       GoRoute(

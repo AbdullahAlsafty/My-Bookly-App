@@ -8,10 +8,12 @@ import 'package:my_bookly/features/hom_featuer/data_layer/models/book_model/book
 import 'package:my_bookly/features/hom_featuer/data_layer/repo/home_repo.dart';
 
 class HomRepoImpementation implements HomeRepo {
+  final ApiServeses apiServeses;
+  const HomRepoImpementation({required this.apiServeses});
   @override
   Future<Either<Faillurs, List<BookModel>>> feacnewstBooks() async {
     try {
-      Map<String, dynamic> data = await ApiServeses().getBooksModel(
+      Map<String, dynamic> data = await apiServeses.getBooksModel(
           url:
               'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&sorting=newest&q=supject:programming');
       List<BookModel> allBooks = [];
@@ -32,7 +34,7 @@ class HomRepoImpementation implements HomeRepo {
   @override
   Future<Either<Faillurs, List<BookModel>>> feachFeatureBooks() async {
     try {
-      Map<String, dynamic> data = await ApiServeses().getBooksModel(
+      Map<String, dynamic> data = await apiServeses.getBooksModel(
           url:
               'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=supject:programming');
       List<BookModel> allBooks = [];
